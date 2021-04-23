@@ -65,6 +65,11 @@ class Post
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $featuredImage;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
@@ -223,6 +228,18 @@ class Post
     public function removeCategory(Category $category): self
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getFeaturedImage(): ?string
+    {
+        return $this->featuredImage;
+    }
+
+    public function setFeaturedImage(?string $featuredImage): self
+    {
+        $this->featuredImage = $featuredImage;
 
         return $this;
     }

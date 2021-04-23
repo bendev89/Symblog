@@ -34,6 +34,11 @@ class Category
      */
     private $posts;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $coverImage;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -91,6 +96,18 @@ class Category
         if ($this->posts->removeElement($post)) {
             $post->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(string $coverImage): self
+    {
+        $this->coverImage = $coverImage;
 
         return $this;
     }
